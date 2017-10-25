@@ -1,2 +1,2 @@
 # KatieAndMichael
-ORIE 4741 Final Project: Predicting Dating Success
+ORIE 4741 Final Project: Predicting Loan Defaults
