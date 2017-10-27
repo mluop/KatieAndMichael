@@ -31,15 +31,16 @@ From this chart it becomes immediately clear that approximately 0% of the loans 
 
 Additionally, we note that the majority of loans in the dataset have a loan status of "Current" meaning that they are still in the process of being paid off. This label, allowing with the other "Current"-esque labels, do not tell us definitively whether a given loan results in a default. Thus in our preliminary analyses we drop the loans which have these intermediate statuses.
 
-<a name="labels"></a>Altogether, our cleaned labels are "YES" (i.e. "Default" or "Charged Off") and "No" (i.e. "Fully Paid). This cleaned dataset still has 250k example loans, which is sufficiently large to build our models with. Even better, we note that the class-imbalance of default-to-nondefault loans is just 18:82. This is promising because we have plenty of examples from each class of loans, and we can effectively train to predict loan defaults.
+<a name="labels"></a>Altogether, our cleaned labels are "YES" (i.e. "Default" or "Charged Off") and "NO" (i.e. "Fully Paid). This cleaned dataset still has 250k example loans, which is sufficiently large to build our models with. Even better, we note that the class-imbalance of default-to-nondefault loans is just 18:82. This is promising because we have plenty of examples from each class of loans, and we can effectively train to predict loan defaults.
 
 ![](final_piechart.jpg "Distribution of Cleaned Loan Statuses")
 
 ### Additional Analyses
 
-In addition to the data exploration described above, we conducted other data analyses that have not yet lead to actionable results. We discuss two examples below.
+In addition to the data exploration described above, we conducted other data analyses that have not yet led to actionable results. We discuss two examples below.
 
 Most interestingy, we looked at the predictive power of "Loan Grade" on the default rate and graphed the ratio of default-to-nondefault for each grade. It was interesting to observe that even though the default rate increases as the grade worsens, the number of approved loans does not vary monotonically with the grade. We have not yet used this fact, but it may be helpful for future development as we account for class imbalance in the data.
+![](loan_grade.png "Distribution of Loans per Loan Grade")
 
 <a name="strings"></a>On another important note, we manually investigated each of the 75 features to see if they are mis-typed by our dataframes package, Pandas in Python. To do this, we had to read the data definitions for every feature and determine by hand the appropriate type. Unfortunately quite a few string-typed columns contained other data, such as dates or ordinal types. As we did not use these columns, we have not yet cleaned or reparsed them. This remains for future development.
 
