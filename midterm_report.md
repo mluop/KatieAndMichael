@@ -76,7 +76,7 @@ The model we use is a random forest regressor. The forest has 10 trees each full
 !!graphs!!
 
 !!confusion matrices!!
-![](RFconfusionMatrix.png "Confusion Matrix from RF")
+![](RFconfusion.png "Confusion Matrix from RF")
 
 ## Plans for Future Development
 
