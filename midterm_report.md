@@ -42,7 +42,7 @@ In addition to the data exploration described above, we conducted other data ana
 Most interestingy, we looked at the predictive power of "Loan Grade" on the default rate and graphed the ratio of default-to-nondefault for each grade. It was interesting to observe that even though the default rate increases as the grade worsens, the number of approved loans does not vary monotonically with the grade. We have not yet used this fact, but it may be helpful for future development as we account for class imbalance in the data.
 ![](loan_grade.png "Distribution of Loans per Loan Grade")
 
-<a name="strings"></a>On another important note, we manually investigated each of the 75 features to see if they are mis-typed by our dataframes package, Pandas in Python. To do this, we had to read the data definitions for every feature and determine by hand the appropriate type. Unfortunately quite a few string-typed columns contained other data, such as dates or ordinal types. As we did not use these columns, we have not yet cleaned or reparsed them. This remains for future development.
+<a name="strings"></a>On another important note, we manually investigated each of the 75 features to see if they are mis-typed by our dataframes package, Pandas in Python. To do this, we had to read the data definitions for every feature and determine by hand the appropriate type. Unfortunately quite a few string-typed columns contained other data, such as dates or ordinal types. As we did not use most of these columns, we have not yet cleaned or reparsed all of them. This remains for future development.  We started with emp_length (employment length), which was typed as a string, and converted this to the integer value in the string for the number of years to be used as a feature in our preliminary investigations.  We also one-hot encoded two categorical features we wished to use in our preliminary analysis.
 
 ## Preliminary Investigations into our Dataset
 
@@ -53,15 +53,20 @@ As one preliminary investigation, we built a random forest model for our loan de
 The labels we use are the cleaned labels described [above](#labels). As such, we only use the 250k loans for which the loan is complete and either defaulted or not.
 
 <a name="transform"></a>We use a small subset of the available features. These features were chosen because their definitions make sense to us, and we believe they may reasonably predict whether a loan will default. Again, we do not perform complex feature transformations such as using polynomial kernels, normalization, or feature whitening. The features are:
-* `!!feature!!`
-* `!!feature!!`
-* `!!feature!!`
-* `!!feature!!`
-* `!!feature!!`
+* Loan Amount
+* Interest Rate
+* Employment Length
+* Annual Income
+* Term - the number of payments on the loan (36 or 60 months)
+* Loan Grade (one-hot encoded for A,B,C,D,E,F,G)
+* Home Ownership (one-hot encoded for (Any, Mortgage, None, Other, Own, Rent)
+
+To get a basic idea of what relationships we may find between the features, we created a correlation heat map, where the darker colors are highly correlated variables, as can be seen by the diagonal where each variable is compared to itself.  There are fairly few strong relations, but this is something we plan to investigate further in considering different feature combinations to build the best model.
+![](corr.png "Heatmap of Feature Correlation")
 
 ### Model
 
-The model we use is a random forest regressor. The forest has !!number!! trees each with !!number!! layers trained on subsets of !!number!! features. The model was trained for !!number!! !!iterations/epochs!!, taking approximately !!number!! minutes. For training, the model only had access to the training dataset consisting of !!number!! loans. For testing, the model was evaluated on a disjoint test dataset consisting of !!number!! loans.
+The model we use is a random forest regressor. The forest has 10 trees each full depth trained on subsets of 19 features.  For training, the model only had access to the training dataset consisting of 190,642 loans. For testing, the model was evaluated on a disjoint test dataset consisting of 63,548 loans.
 
 ### Results
 
@@ -70,6 +75,7 @@ The model we use is a random forest regressor. The forest has !!number!! trees e
 !!graphs!!
 
 !!confusion matrices!!
+![](RFconfusionMatrix.png "Confusion Matrix from RF")
 
 ## Plans for Future Development
 
@@ -85,4 +91,4 @@ We will continue to experiment with different models for this logistic regressio
 
 ### Testing
 
-Throughout the model selection process described above, we will only use the training dataset. We will reserve the disjoint testing dataset for the very end, when we are ready to test or final model (or couple of models). Using the Hoeffding bound, we will be able to make a fairly tight estimate of the out-of-sample error of our final model(s). With these models we will evaluate feature importance, to finally conclude which factors best predict whether a loan will default.
+Throughout the model selection process described above, we will only use the training dataset. We will reserve the disjoint testing dataset for the very end, when we are ready to test our final model (or couple of models). Using the Hoeffding bound, we will be able to make a fairly tight estimate of the out-of-sample error of our final model(s). With these models we will evaluate feature importance, to finally conclude which factors best predict whether a loan will default.
