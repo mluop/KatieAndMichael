@@ -86,7 +86,7 @@ We began by splitting our dataset into training and testing, as mentioned above,
 
 Further looking into these examples by hand or with other models could help us determine which features strongly (correctly, in this case) indicated that the loans would not default, or which features either interfered with the model to provide lower probabilities or happen to be more indicative of loans that end up defaulting.
 
-!!graphs!!
+Below is the confusion matrix for our trained random forest model, run on our test set.  This matrix is telling us we have 49012+1329 correct predictions (along the left diagonal) and 10369+2838 incorrect predictions (along the right diagonal).  Considering this is only our preliminary model with only some data cleaning and feature selection by hand, this is a promising result as we have mentioned.  With our plans for expansion described below this project seems very feasible and likely to be successful.  There are obvious areas for improvement, and we are ready and able to tackle them.
 
 ![](RFconfusion.png "Confusion Matrix from RF")
 
