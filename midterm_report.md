@@ -72,10 +72,22 @@ The model we use is a random forest regressor. The forest has 10 trees each full
 ### Results
 
 !!descriptions!!
+We began by splitting our dataset into training and testing, as mentioned above, in order to get an idea of how our model would perform on new data and catch overfitting early on.  One of the main motivations of building the random forest model was it's easy access to feature importance.  This was something we were curious about, since we had chosen our features by hand based on those that seemed potentially significant to us.  Not only is random forest a good method to avoid both high bias and high variance by averaging over several low bias high variance trees, but it provides us with a simple way to check on our feature selection and gives us good direction moving forward into more in depth feature transformations.  Another convenient aspect of the random forest model is we can also evaluate the probability of each of our predictions on the test set.  Our first 10 examples in the test set were predicted all predicted to not default, but with the following probabilities:
+[ 1.  ,  0.  ],
+[ 0.7 ,  0.3 ],
+[ 0.75,  0.25],
+[ 0.6 ,  0.4 ],
+[ 0.9 ,  0.1 ],
+[ 0.7 ,  0.3 ],
+[ 0.7 ,  0.3 ],
+[ 1.  ,  0.  ],
+[ 1.  ,  0.  ],
+[ 0.9 ,  0.1 ]
+
+Further looking into these examples by hand or with other models could help us determine which features strongly (correctly, in this case) indicated that the loans would not default, or which features either interfered with the model to provide lower probabilities or happen to be more indicative of loans that end up defaulting.
 
 !!graphs!!
 
-!!confusion matrices!!
 ![](RFconfusion.png "Confusion Matrix from RF")
 
 ## Plans for Future Development
