@@ -62,6 +62,7 @@ The labels we use are the cleaned labels described [above](#labels). As such, we
 * Home Ownership (one-hot encoded for (Any, Mortgage, None, Other, Own, Rent)
 
 To get a basic idea of what relationships we may find between the features, we created a correlation heat map, where the darker colors are highly correlated variables, as can be seen by the diagonal where each variable is compared to itself.  There are fairly few strong relations, but this is something we plan to investigate further in considering different feature combinations to build the best model.
+
 ![](corr.png "Heatmap of Feature Correlation")
 
 ### Model
