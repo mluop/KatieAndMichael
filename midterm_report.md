@@ -71,7 +71,6 @@ The model we use is a random forest regressor. The forest has 10 trees each full
 
 ### Results
 
-!!descriptions!!
 We began by splitting our dataset into training and testing, as mentioned above, in order to get an idea of how our model would perform on new data and catch overfitting early on.  One of the main motivations of building the random forest model was it's easy access to feature importance.  This was something we were curious about, since we had chosen our features by hand based on those that seemed potentially significant to us.  Not only is random forest a good method to avoid both high bias and high variance by averaging over several low bias high variance trees, but it provides us with a simple way to check on our feature selection and gives us good direction moving forward into more in depth feature transformations.  Another convenient aspect of the random forest model is we can also evaluate the probability of each of our predictions on the test set.  Our first 10 examples in the test set were predicted all predicted to not default, but with the following probabilities:
 1. [ 1.  ,  0.  ]
 2. [ 0.7 ,  0.3 ]
